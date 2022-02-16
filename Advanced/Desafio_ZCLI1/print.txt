@@ -1,0 +1,10 @@
+//PRINT2   JOB  PRINTJCL
+//STEP1    EXEC PGM=IDCAMS
+//INDD     DD   DSNAME=Z10009.VSAMDS,DISP=SHR
+//SYSPRINT DD   SYSOUT=A
+//SYSIN    DD   *
+     PRINT -
+           INFILE(INDD) -
+           COUNT(20) -
+           CHARACTER
+/*

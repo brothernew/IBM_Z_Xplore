@@ -1,0 +1,105 @@
+
+ DESCRIPTION
+ -----------
+
+   Manage z/OS jobs.
+
+ USAGE
+ -----
+
+   zowe zos-jobs <group>
+
+   Where <group> is one of the following:
+
+ GROUPS
+ ------
+
+   cancel | can  Cancel a job              
+   delete | del  Delete a job              
+   download | dl Download job output       
+   list | ls     List jobs and spool files 
+   submit | sub  Submit z/OS jobs          
+   view | vw     View details of a z/OS job
+
+ GLOBAL OPTIONS
+ --------------
+
+   --response-format-json  | --rfj (boolean)
+
+      Produce JSON formatted data from a command
+
+   --help  | -h (boolean)
+
+      Display help text
+
+   --help-examples  (boolean)
+
+      Display examples for all the commands in a the group
+
+   --help-web  | --hw (boolean)
+
+      Display HTML help in browser
+
+ EXAMPLES
+ --------
+
+   - Submit the JCL in the data set "ibmuser.cntl(deploy)":
+
+      $ zowe zos-jobs submit data-set "ibmuser.cntl(deploy)"
+
+   - Submit the JCL in the data set "ibmuser.cntl(deploy)", wait
+   for the job to complete and print all output from the job:
+
+      $ zowe zos-jobs submit data-set "ibmuser.cntl(deploy)" --vasc
+
+   - Submit the JCL in the file "iefbr14.txt":
+
+      $ zowe zos-jobs submit local-file "iefbr14.txt"
+
+   - Download all the output of the job with job ID JOB00234 to
+   an automatically generated directory.:
+
+      $ zowe zos-jobs download output JOB00234
+
+   - View status and other details of the job with the job ID
+   JOB00123:
+
+      $ zowe zos-jobs view job-status-by-jobid j123
+
+   - Print only the status (for example, "OUTPUT" or "ACTIVE")
+   of the job with the job ID JOB00123:
+
+      $ zowe zos-jobs view job-status-by-jobid j123 --rff status --rft string
+
+   - View the spool file with ID 4 for the job with job ID
+   JOB00123:
+
+      $ zowe zos-jobs view spool-file-by-id JOB00123 4
+
+   - List the spool files of the job with JOBID JOB00123:
+
+      $ zowe zos-jobs list spool-files-by-jobid job00123
+
+   - List all jobs with default settings. The command returns
+   jobs owned by your user ID with any job name:
+
+      $ zowe zos-jobs list jobs 
+
+   - List all jobs owned by user IDs starting with 'ibmu' and
+   job names starting with 'myjo':
+
+      $ zowe zos-jobs list jobs -o "ibmu*" -p "myjo*"
+
+   - List all jobs with default owner and prefix settings,
+   displaying only the job ID of each job:
+
+      $ zowe zos-jobs list jobs --rff jobid --rft table
+
+   - Delete job with job ID JOB03456.:
+
+      $ zowe zos-jobs delete job JOB03456
+
+   - Cancel job with job ID JOB03456:
+
+      $ zowe zos-jobs cancel job JOB03456
+
